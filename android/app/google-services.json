@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1073472659012",
+    "project_id": "mini-project-firebase-adae2",
+    "storage_bucket": "mini-project-firebase-adae2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073472659012:android:bf9a046d2393299b652611",
+        "android_client_info": {
+          "package_name": "com.example.mini_project_firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJnq_J0-HP8pS_lkrTCMLonv47LAAUZ6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
