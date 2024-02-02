@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:mini_project_firebase/data/provider/auth_provider.dart';
+import 'package:mini_project_firebase/data/provider/chat_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'presentation/screens/auth.dart';
 import 'presentation/screens/chat.dart';
@@ -11,7 +14,19 @@ void main() async {
   await Firebase.initializeApp(
     // options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const App());
+  runApp(
+    MultiProvider(
+        providers: [
+          ChangeNotifierProvider<ChatProvider>(
+              create: (context) => ChatProvider()
+          ),
+          ChangeNotifierProvider<AuthNotifier>(
+              create: (context) => AuthNotifier()
+          )
+        ],
+      child: App(),
+    ),
+  );
 }
 
 class App extends StatelessWidget {
@@ -26,17 +41,11 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 63, 17, 177)),
       ),
-      home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (ctx, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+      home: Consumer<AuthNotifier>(
+          builder: (ctx, auth, _) {
+            if (auth.currentUser != null) {
               return const ChatScreen();
             }
-
-            if (snapshot.hasData) {
-              return const ChatScreen();
-            }
-
             return const AuthScreen();
           }),
     );

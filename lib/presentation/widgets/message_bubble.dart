@@ -38,7 +38,7 @@ class MessageBubble extends StatelessWidget {
   // Username of the user.
   // Not required if the message is not the first in a sequence.
   final String? username;
-  final String message;
+  final String? message;
   final String? imageMessage;
   // Controls how the MessageBubble will be aligned.
   final bool isMe;
@@ -140,7 +140,7 @@ class MessageBubble extends StatelessWidget {
                           ),
 
                         Text(
-                          message,
+                          message!,
                           style: TextStyle(
                             // Add a little line spacing to make the text look nicer
                             // when multilined.

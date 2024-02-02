@@ -45,22 +45,27 @@ class _NewMessageState extends State<NewMessage> {
       print('Picked Image File $_selectedImage');
     });
 
-     AlertDialog(
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (_selectedImage != null)
-            ImagePreviewMessage(pickedImageFile: _selectedImage),
-          IconButton(
-            color: Theme.of(context).colorScheme.primary,
-            icon: const Icon(Icons.send),
-            onPressed: () {
-              _submitMessage;
-              Navigator.pop(context); // Close the dialog after submitting
-            },
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (_selectedImage != null)
+                ImagePreviewMessage(pickedImageFile: _selectedImage),
+              IconButton(
+                color: Theme.of(context).colorScheme.primary,
+                icon: const Icon(Icons.send),
+                onPressed: () {
+                  _submitMessage;
+                  Navigator.pop(context); // Close the dialog after submitting
+                },
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      }
     );
   }
 

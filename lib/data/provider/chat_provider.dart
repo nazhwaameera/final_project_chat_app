@@ -6,8 +6,8 @@ class ChatProvider extends ChangeNotifier {
 
   List<ChatMessage> get messages => _messages;
 
-  void addMessage(ChatMessage message) {
-    _messages.add(message);
+  void updateMessage(ChatMessage message) {
+    ChatMessage updatedMessage = message.copyWith();
     notifyListeners();
   }
 
